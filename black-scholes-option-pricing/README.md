@@ -1,43 +1,61 @@
-# Angel One F&O Breakout Scanner
+# Black–Scholes Option Pricing Web Application
 
-A Python-based scanner that identifies high and low breakouts in NSE F&O stocks
-using price action, RSI, and volume filters. Alerts are delivered via Telegram.
+This project is a Python based web application that prices European call and put
+options using the Black–Scholes model. The application allows users to input
+option parameters through a web interface and displays the option premium,
+Greeks, and volatility-related metrics on the same page.
 
-## Strategy Overview
-- Lookback period: 5 trading days
-- Indicator: RSI (14)
-- Volume filter: Above 20-day average volume
+The project was built to understand option pricing theory and its practical
+implementation using Python and a simple web interface.
 
-### High Breakout Conditions
-- Close > last 5 days high
-- RSI ≥ 60
-- Volume ≥ average volume
+---
 
-### Low Breakout Conditions
-- Close < last 5 days low
-- RSI ≤ 40
-- Volume ≥ average volume
+## Features
+- Black–Scholes pricing for European Call and Put options
+- Calculation of option Greeks:
+  - Delta
+  - Gamma
+  - Vega
+  - Theta
+  - Rho
+- Implied Volatility
+- Webbased interface using Flask and HTML
+- End to end integration between frontend and Python backend
 
-## Tech Stack
-- Python
-- Angel One SmartAPI
-- Pandas, NumPy
-- TA-Lib
-- Telegram Bot API
+---
 
 ## How It Works
-1. Fetches daily candle data
-2. Scans NSE F&O stocks
-3. Applies breakout conditions
-4. Sends alerts to Telegram
+1. The user enters option parameters (spot price, strike price, time to expiry,
+   and option type) in the web interface.
+2. The HTML form sends these inputs to the Flask backend.
+3. The Python backend processes the inputs and applies the Black–Scholes model.
+4. Option price, Greeks, and volatility metrics are calculated.
+5. The results are rendered and displayed on the same web page.
 
-## Setup Instructions
-1. Clone the repository
-2. Install dependencies:
-   pip install -r requirements.txt
-3. Add API credentials in config.py
-4. Run the script after market close
+---
 
-## Disclaimer
-This project is for educational purposes only and does not constitute
-investment or trading advice.
+## Running the Application Locally
+
+### Step 1: Install dependencies
+Open a terminal in the project folder and run:
+
+    pip install -r requirements.txt
+This installs all required Python libraries.
+
+### Step 2: Start the application
+    python app.py
+After running this command, the Flask server starts on your local machine.
+
+### Step 3: Open the web app
+Open a browser and go to:
+        
+    http://127.0.0.1:3000
+This address refers to the application running locally on your computer.
+
+## Important Notes
+
+1. This application runs locally and is not deployed on the internet.
+2. The Black–Scholes model is applicable only to European options.
+3. The model assumes constant volatility and interest rates.
+
+
