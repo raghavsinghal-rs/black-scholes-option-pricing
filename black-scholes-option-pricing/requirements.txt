@@ -1,5 +1,7 @@
-pandas
+flask
 numpy
-requests
-ta-lib
-smartapi-python
+scipy
+pandas
+yfinance
+arch
+matplotlib
