@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Black-Scholes Options Calculator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Black-Scholes Options Calculator</h1>
+        <form method="POST">
+            <div class="form-group">
+                <label for="ticker">Ticker (Yahoo Finance)</label>
+                <select class="form-control" id="ticker" name="ticker" required>
+                    <option value="" disabled selected>Select a Ticker</option>
+                    <option value="^NSEI">NIFTY 50</option>
+                    <option value="^NSEBANK">BANK NIFTY</option>
+                    <option value="NIFTY_FIN_SERVICE.NS">NIFTY FIN SERVICES</option>
+                    <option value="NIFTY_MID_SELECT.NS">NIFTY MIDCAP SELECT</option>
+                    <option value="AARTIIND.NS">AARTIIND</option>
+                    <option value="ABB.NS">ABB</option>
+                    <option value="ABBOTINDIA.NS">ABBOTINDIA</option>
+                    <option value="ACC.NS">ACC</option>
+                    <option value="ADANIENT.NS">ADANIENT</option>
+                    <option value="ADANIPORTS.NS">ADANIPORTS</option>
+                    <option value="ABCAPITAL.NS">ABCAPITAL</option>
+                    <option value="ABFRL.NS">ABFRL</option>
+                    <option value="ALKEM.NS">ALKEM</option>
+                    <option value="AMBUJACEM.NS">AMBUJACEM</option>
+                    <option value="APOLLOHOSP.NS">APOLLOHOSP</option>
+                    <option value="APOLLOTYRE.NS">APOLLOTYRE</option>
+                    <option value="ASHOKLEY.NS">ASHOKLEY</option>
+                    <option value="ASIANPAINT.NS">ASIANPAINT</option>
+                    <option value="ASTRAL.NS">ASTRAL</option>
+                    <option value="ATUL.NS">ATUL</option>
+                    <option value="AUBANK.NS">AUBANK</option>
+                    <option value="AUROPHARMA.NS">AUROPHARMA</option>
+                    <option value="AXISBANK.NS">AXISBANK</option>
+                    <option value="BAJAJ-AUTO.NS">BAJAJ-AUTO</option>
+                    <option value="BAJFINANCE.NS">BAJFINANCE</option>
+                    <option value="BAJAJFINSV.NS">BAJAJFINSV</option>
+                    <option value="BALKRISIND.NS">BALKRISIND</option>
+                    <option value="BALRAMCHIN.NS">BALRAMCHIN</option>
+                    <option value="BANDHANBNK.NS">BANDHANBNK</option>
+                    <option value="BANKBARODA.NS">BANKBARODA</option>
+                    <option value="BATAINDIA.NS">BATAINDIA</option>
+                    <option value="BERGEPAINT.NS">BERGEPAINT</option>
+                    <option value="BEL.NS">BEL</option>
+                    <option value="BHARATFORG.NS">BHARATFORG</option>
+                    <option value="BHEL.NS">BHEL</option>
+                    <option value="BPCL.NS">BPCL</option>
+                    <option value="BHARTIARTL.NS">BHARTIARTL</option>
+                    <option value="BIOCON.NS">BIOCON</option>
+                    <option value="BSOFT.NS">BSOFT</option>
+                    <option value="BOSCHLTD.NS">BOSCHLTD</option>
+                    <option value="BRITANNIA.NS">BRITANNIA</option>
+                    <option value="CANFINHOME.NS">CANFINHOME</option>
+                    <option value="CANBK.NS">CANBK</option>
+                    <option value="CHAMBLFERT.NS">CHAMBLFERT</option>
+                    <option value="CHOLAFIN.NS">CHOLAFIN</option>
+                    <option value="CIPLA.NS">CIPLA</option>
+                    <option value="CUB.NS">CUB</option>
+                    <option value="COALINDIA.NS">COALINDIA</option>
+                    <option value="COFORGE.NS">COFORGE</option>
+                    <option value="COLPAL.NS">COLPAL</option>
+                    <option value="CONCOR.NS">CONCOR</option>
+                    <option value="COROMANDEL.NS">COROMANDEL</option>
+                    <option value="CROMPTON.NS">CROMPTON</option>
+                    <option value="CUMMINSIND.NS">CUMMINSIND</option>
+                    <option value="DABUR.NS">DABUR</option>
+                    <option value="DALBHARAT.NS">DALBHARAT</option>
+                    <option value="DEEPAKNTR.NS">DEEPAKNTR</option>
+                    <option value="DELTACORP.NS">DELTACORP</option>
+                    <option value="DIVISLAB.NS">DIVISLAB</option>
+                    <option value="DIXON.NS">DIXON</option>
+                    <option value="DLF.NS">DLF</option>
+                    <option value="LALPATHLAB.NS">LALPATHLAB</option>
+                    <option value="DRREDDY.NS">DRREDDY</option>
+                    <option value="EICHERMOT.NS">EICHERMOT</option>
+                    <option value="ESCORTS.NS">ESCORTS</option>
+                    <option value="EXIDEIND.NS">EXIDEIND</option>
+                    <option value="GAIL.NS">GAIL</option>
+                    <option value="GLENMARK.NS">GLENMARK</option>
+                    <option value="GMRINFRA.NS">GMRINFRA</option>
+                    <option value="GODREJCP.NS">GODREJCP</option>
+                    <option value="GODREJPROP.NS">GODREJPROP</option>
+                    <option value="GRANULES.NS">GRANULES</option>
+                    <option value="GRASIM.NS">GRASIM</option>
+                    <option value="GUJGASLTD.NS">GUJGASLTD</option>
+                    <option value="GNFC.NS">GNFC</option>
+                    <option value="HAVELLS.NS">HAVELLS</option>
+                    <option value="HCLTECH.NS">HCLTECH</option>
+                    <option value="HDFCAMC.NS">HDFCAMC</option>
+                    <option value="HDFCBANK.NS">HDFCBANK</option>
+                    <option value="HDFCLIFE.NS">HDFCLIFE</option>
+                    <option value="HEROMOTOCO.NS">HEROMOTOCO</option>
+                    <option value="HINDALCO.NS">HINDALCO</option>
+                    <option value="HAL.NS">HAL</option>
+                    <option value="HINDCOPPER.NS">HINDCOPPER</option>
+                    <option value="HINDPETRO.NS">HINDPETRO</option>
+                    <option value="HINDUNILVR.NS">HINDUNILVR</option>
+                    <option value="ICICIBANK.NS">ICICIBANK</option>
+                    <option value="ICICIGI.NS">ICICIGI</option>
+                    <option value="ICICIPRULI.NS">ICICIPRULI</option>
+                    <option value="IDFCFIRSTB.NS">IDFCFIRSTB</option>
+                    <option value="IDFC.NS">IDFC</option>
+                    <option value="IBULHSGFIN.NS">IBULHSGFIN</option>
+                    <option value="INDIAMART.NS">INDIAMART</option>
+                    <option value="IEX.NS">IEX</option>
+                    <option value="IOC.NS">IOC</option>
+                    <option value="IRCTC.NS">IRCTC</option>
+                    <option value="IGL.NS">IGL</option>
+                    <option value="INDUSTOWER.NS">INDUSTOWER</option>
+                    <option value="INDUSINDBK.NS">INDUSINDBK</option>
+                    <option value="NAUKRI.NS">NAUKRI</option>
+                    <option value="INFY.NS">INFY</option>
+                    <option value="INDIGO.NS">INDIGO</option>
+                    <option value="IPCALAB.NS">IPCALAB</option>
+                    <option value="ITC.NS">ITC</option>
+                    <option value="JINDALSTEL.NS">JINDALSTEL</option>
+                    <option value="JKCEMENT.NS">JKCEMENT</option>
+                    <option value="JSWSTEEL.NS">JSWSTEEL</option>
+                    <option value="JUBLFOOD.NS">JUBLFOOD</option>
+                    <option value="KOTAKBANK.NS">KOTAKBANK</option>
+                    <option value="L&TFH.NS">L&TFH</option>
+                    <option value="LTTS.NS">LTTS</option>
+                    <option value="LT.NS">LT</option>
+                    <option value="LAURUSLABS.NS">LAURUSLABS</option>
+                    <option value="LICHSGFIN.NS">LICHSGFIN</option>
+                    <option value="LTIM.NS">LTIM</option>
+                    <option value="LUPIN.NS">LUPIN</option>
+                    <option value="MGL.NS">MGL</option>
+                    <option value="M&MFIN.NS">M&MFIN</option>
+                    <option value="M&M.NS">M&M</option>
+                    <option value="MANAPPURAM.NS">MANAPPURAM</option>
+                    <option value="MARICO.NS">MARICO</option>
+                    <option value="MARUTI.NS">MARUTI</option>
+                    <option value="MFSL.NS">MFSL</option>
+                    <option value="METROPOLIS.NS">METROPOLIS</option>
+                    <option value="MPHASIS.NS">MPHASIS</option>
+                    <option value="MRF.NS">MRF</option>
+                    <option value="MCX.NS">MCX</option>
+                    <option value="MUTHOOTFIN.NS">MUTHOOTFIN</option>
+                    <option value="NATIONALUM.NS">NATIONALUM</option>
+                    <option value="NAVINFLUOR.NS">NAVINFLUOR</option>
+                    <option value="NESTLEIND.NS">NESTLEIND</option>
+                    <option value="NMDC.NS">NMDC</option>
+                    <option value="NTPC.NS">NTPC</option>
+                    <option value="OBEROIRLTY.NS">OBEROIRLTY</option>
+                    <option value="ONGC.NS">ONGC</option>
+                    <option value="OFSS.NS">OFSS</option>
+                    <option value="PAGEIND.NS">PAGEIND</option>
+                    <option value="PERSISTENT.NS">PERSISTENT</option>
+                    <option value="PETRONET.NS">PETRONET</option>
+                    <option value="PIIND.NS">PIIND</option>
+                    <option value="PIDILITIND.NS">PIDILITIND</option>
+                    <option value="PEL.NS">PEL</option>
+                    <option value="POLYCAB.NS">POLYCAB</option>
+                    <option value="PFC.NS">PFC</option>
+                    <option value="POWERGRID.NS">POWERGRID</option>
+                    <option value="PNB.NS">PNB</option>
+                    <option value="PVRINOX.NS">PVRINOX</option>
+                    <option value="RBLBANK.NS">RBLBANK</option>
+                    <option value="RECLTD.NS">RECLTD</option>
+                    <option value="RELIANCE.NS">RELIANCE</option>
+                    <option value="MOTHERSON.NS">MOTHERSON</option>
+                    <option value="SBICARD.NS">SBICARD</option>
+                    <option value="SBILIFE.NS">SBILIFE</option>
+                    <option value="SHREECEM.NS">SHREECEM</option>
+                    <option value="SHRIRAMFIN.NS">SHRIRAMFIN</option>
+                    <option value="SIEMENS.NS">SIEMENS</option>
+                    <option value="SRF.NS">SRF</option>
+                    <option value="SBIN.NS">SBIN</option>
+                    <option value="SAIL.NS">SAIL</option>
+                    <option value="SUNPHARMA.NS">SUNPHARMA</option>
+                    <option value="SUNTV.NS">SUNTV</option>
+                    <option value="SYNGENE.NS">SYNGENE</option>
+                    <option value="TATACHEM.NS">TATACHEM</option>
+                    <option value="TATACOMM.NS">TATACOMM</option>
+                    <option value="TCS.NS">TCS</option>
+                    <option value="TATACONSUM.NS">TATACONSUM</option>
+                    <option value="TATAMOTORS.NS">TATAMOTORS</option>
+                    <option value="TATAPOWER.NS">TATAPOWER</option>
+                    <option value="TATASTEEL.NS">TATASTEEL</option>
+                    <option value="TECHM.NS">TECHM</option>
+                    <option value="FEDERALBNK.NS">FEDERALBNK</option>
+                    <option value="INDIACEM.NS">INDIACEM</option>
+                    <option value="INDHOTEL.NS">INDHOTEL</option>
+                    <option value="RAMCOCEM.NS">RAMCOCEM</option>
+                    <option value="TITAN.NS">TITAN</option>
+                    <option value="TORNTPHARM.NS">TORNTPHARM</option>
+                    <option value="TRENT.NS">TRENT</option>
+                    <option value="TVSMOTOR.NS">TVSMOTOR</option>
+                    <option value="ULTRACEMCO.NS">ULTRACEMCO</option>
+                    <option value="UBL.NS">UBL</option>
+                    <option value="MCDOWELL-N.NS">MCDOWELL-N</option>
+                    <option value="UPL.NS">UPL</option>
+                    <option value="VEDL.NS">VEDL</option>
+                    <option value="IDEA.NS">IDEA</option>
+                    <option value="VOLTAS.NS">VOLTAS</option>
+                    <option value="WIPRO.NS">WIPRO</option>
+                    <option value="ZEEL.NS">ZEEL</option>
+                    <option value="ZYDUSLIFE.NS">ZYDUSLIFE</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="spot_price">Spot Price</label>
+                <input type="text" class="form-control" id="spot_price" name="spot_price" required>
+            </div>
+            <div class="form-group">
+                <label for="strike_price">Strike Price</label>
+                <input type="text" class="form-control" id="strike_price" name="strike_price" required>
+            </div>
+            <div class="form-group">
+                <label for="time_to_expiry">Time to Expiry (in days)</label>
+                <input type="text" class="form-control" id="time_to_expiry" name="time_to_expiry" required>
+            </div>
+            <div class="form-group">
+                <label for="option_type">Option Type</label>
+                <select class="form-control" id="option_type" name="option_type" required>
+                    <option value="call">Call</option>
+                    <option value="put">Put</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Calculate</button>
+        </form>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('#ticker').select2({
+                    placeholder: 'Search or select a ticker',
+                    allowClear: true,
+                    tags: true // Allow user to add tags (custom tickers)
+                });
+            });
+        </script>
+    </div>
+    <div class="container mt-5">
+        <div class="output-container">
+            {% if option_price %}
+            <div class="alert alert-success">
+                <h4 class="alert-heading">Results</h4>
+                <p><strong>Ticker:</strong> {{ ticker }}</p>
+                <p><strong>Option Premium:</strong> {{ option_price }}</p>
+                <p><strong>Delta:</strong> {{ delta }}</p>
+                <p><strong>Gamma:</strong> {{ gamma }}</p>
+                <p><strong>Vega:</strong> {{ vega }}</p>
+                <p><strong>Theta:</strong> {{ theta }}</p>
+                <p><strong>Rho:</strong> {{ rho }}</p>
+                <p><strong>Predicted Volatility:</strong> {{ predicted_volatility }}</p>
+                {{ candlestick | safe }}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
